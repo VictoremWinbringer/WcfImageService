@@ -1,0 +1,35 @@
+﻿<Page x:Class="WpfUi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfUi"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowTitle="MainWindow" Loaded="MainWindow_OnLoaded" Unloaded="MainWindow_OnUnloaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Name="Reload" Click="Reload_OnClick" Content="Перезагрузить"/>
+            <Button Name="Create" Click="Create_OnClick">Изменить</Button>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="imagesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+                  RowBackground="LightGray" AlternatingRowBackground="White" FrozenColumnCount="2" SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn  IsReadOnly="True"  Header="Id" Binding="{Binding Path=Id}" Width="50" />
+                <DataGridTextColumn  Header="Название" Binding="{Binding Path=Title}" Width="150" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="*" />
+            </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Image MaxHeight="300" MaxWidth="300" Source="{Binding Path=Data}" Stretch="Uniform" StretchDirection="DownOnly"/>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
+    </Grid>
+</Page>
