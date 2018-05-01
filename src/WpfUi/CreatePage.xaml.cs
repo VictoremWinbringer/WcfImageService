@@ -11,7 +11,6 @@ namespace WpfUi
     /// </summary>
     public partial class CreatePage : Page
     {
-        private string _image;
 
         public CreatePage(ImageModel image)
         {
@@ -46,7 +45,6 @@ namespace WpfUi
                     ((BitmapImage)Data.Source)?.StreamSource?.Dispose();
 
                     Data.Source = bi;
-                    _image = openFileDialog.FileName;
                 }
             }
         }
@@ -55,7 +53,7 @@ namespace WpfUi
         {
             var stream = (MemoryStream)((BitmapImage)Data.Source)?.StreamSource;
 
-            return stream?.ToArray()??new byte[0];
+            return stream?.ToArray() ?? new byte[0];
         }
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
